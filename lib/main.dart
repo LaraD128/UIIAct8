@@ -1,41 +1,80 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final List<Tab> tabs = [
+    Tab(
+      text: 'Item1',
+      icon: Icon(Icons.shopping_bag),
+    ),
+    Tab(
+      text: 'Item2',
+      icon: Icon(Icons.shopping_bag),
+    ),
+    Tab(
+      text: 'Item3',
+      icon: Icon(Icons.shopping_bag),
+    ),
+    Tab(
+      text: 'Item4',
+      icon: Icon(Icons.shopping_bag),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Images',
       theme: ThemeData(
-        // useMaterial3: false,
         primarySwatch: Colors.blue,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});  
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
+      home: DefaultTabController(
+        length: tabs.length,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Ropa Lefleur'),
+            backgroundColor: Color(0xffead76e), // Color hexadecimal
+            bottom: TabBar(
+              tabs: tabs,
+            ),
+          ),
+          body: Container(
+            color: Color(0xffffdee),
+            child: TabBarView(
+              children: [
+                // Replace each Tab with the desired content
+                Container(
+                  alignment: Alignment.center,
+                  child: Image.network(
+                      'https://golflefleur.com/cdn/shop/files/DIGI-LEOPARD-VEST-GRN-01.jpg?v=1701742821&width=1920'),
+                ),
+                Container(
+                  alignment: Alignment.topCenter,
+                  child: Image.network(
+                      'https://golflefleur.com/cdn/shop/files/CT70D.jpg?v=1714023281&width=1920'),
+                ),
+                Container(
+                  alignment: Alignment.topCenter,
+                  child: Image.network(
+                      'https://golflefleur.com/cdn/shop/files/CURSIVE-CROTCH-TROUSER-KHA-01.jpg?v=1711139614&width=1920'),
+                ),
+                Container(
+                  alignment: Alignment.topCenter,
+                  child: Image.network(
+                      'https://golflefleur.com/cdn/shop/files/FLEUR-CAMO-CROSSBODY-BLU-01.jpg?v=1712082162&width=1920'),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
